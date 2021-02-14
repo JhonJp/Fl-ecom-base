@@ -2,14 +2,12 @@ import React, { useState } from 'react'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 import { red } from '@material-ui/core/colors'
 import { Grid } from '@material-ui/core'
+import { Row, Col } from 'react-bootstrap'
+import { Spring } from 'react-spring/renderprops'
 import Card from '@material-ui/core/Card'
-import CardHeader from '@material-ui/core/CardHeader'
 import CardMedia from '@material-ui/core/CardMedia'
 import CardContent from '@material-ui/core/CardContent'
-import Avatar from '@material-ui/core/Avatar'
-import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -62,29 +60,46 @@ const Collections = (props: any) => {
     const { collections } = props
 
     return (
+      <>
+      <Row>
+        <Col className="text-center">
+          <Typography variant="h4" component="h4">
+            Products
+          </Typography>
+        </Col>
+      </Row>
         <Grid container className={grid.root} spacing={2}>
             {collections.map((item:any, index:number) => {
                 if(index < 4){
                     return(
-                        <Grid item>
-                            <Card className={classes.root}>
-                                <CardMedia
-                                    className={classes.media}
-                                    image="/static/images/cards/paella.jpg"
-                                    title="Paella dish"
-                                />
-                                <CardContent>
-                                    <Typography variant="body2" color="textSecondary" component="p">
-                                    This impressive paella is a perfect party dish and a fun meal to cook together with your
-                                    guests. Add 1 cup of frozen peas along with the mussels, if you like.
-                                    </Typography>
-                                </CardContent>
-                            </Card>
+                        <Grid item>                            
+                          <Spring
+                          from={{ opacity: 0, marginBottom: 500, }}
+                          to={{ opacity:1, marginBottom: 0, }}
+                          config={{ delay: 5, duration: 2000 }}
+                          > 
+                          {ps=>(
+                              <Card style={ps} className={classes.root}>
+                                  <CardMedia
+                                      className={classes.media}
+                                      image="/static/images/cards/paella.jpg"
+                                      title="Paella dish"
+                                  />
+                                  <CardContent>
+                                      <Typography variant="body2" color="textSecondary" component="p">
+                                      This impressive paella is a perfect party dish and a fun meal to cook together with your
+                                      guests. Add 1 cup of frozen peas along with the mussels, if you like.
+                                      </Typography>
+                                  </CardContent>
+                              </Card>
+                              )}
+                            </Spring>
                         </Grid>
                     )
                 }
             })}
         </Grid>
+      </>
     );
 }
   export default Collections

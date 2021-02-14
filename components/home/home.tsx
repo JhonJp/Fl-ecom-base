@@ -19,6 +19,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import Particle from 'particles-bg'
 import Collections from '../collections/collections'
+import Feature from '../featured/feature'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -62,9 +63,9 @@ const Homepage = (props: any) => {
                 <Row>
                     <Col md={8}>
                         <Spring
-                            from={{ opacity:0 }}
-                            to={{ opacity:1 }}
-                            config={{ delay: 0, duration: 1000 }}
+                            from={{ opacity: 0, }}
+                            to={{ opacity:1, }}
+                            config={{ delay: 0, duration: 2000 }}
                             > 
                             {ps=>(
                                 <Carousel style={ps} controls={false} indicators={false}>
@@ -153,6 +154,8 @@ const Homepage = (props: any) => {
                     </Col>
                 </Row>
             </div>
+            <Collections collections={collections} />
+            <Feature />
             <Collections collections={collections} />
         </>
     )

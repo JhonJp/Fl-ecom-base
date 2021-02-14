@@ -26,14 +26,14 @@ const Navigation = (props: any) => {
 
   useEffect(() => {
     document.addEventListener("scroll", () => {
-      const bgColor = window.scrollY < 100 ? "none":"#ffd9cc";
+      const bgColor = window.scrollY < 100 ? "none":"#ffd9ccc7";
       setColor(bgColor)
     })
   })
   
   return (
     <>
-      <Navbar expand="md" light className="custom-nav" style={{ background: txtColor }}>
+      <Navbar expand="md" light className="custom-nav" style={{ background: txtColor }} sticky="top">
         <NavbarBrand href="/">
           <img
             src={navigation.logo[0].url}

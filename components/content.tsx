@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import Navigation from '../components/navigation/Navigation'
 import Homepage from '../components/home/home'
 import fire from '../api/firebase'
+import Footer from './footer/Footer'
 
 const Container = (prop: any) => {
   const [load, setLoading] = useState(true)
@@ -52,6 +53,7 @@ const Container = (prop: any) => {
       <>
         <Navigation navigation={nav} />
         <Homepage headline={headline} collections={collections}/>
+        <Footer />
       </>
     ) }
     </>
