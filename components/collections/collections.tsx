@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 import { red } from '@material-ui/core/colors'
 import { Grid } from '@material-ui/core'
@@ -39,8 +39,6 @@ const gridStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
-      flexDirection: 'row',
-      flexWrap: 'nowrap',
       margin: '5% 10% 5% 10%',
       textAlign: 'center',
     },
@@ -51,6 +49,9 @@ const gridStyles = makeStyles((theme: Theme) =>
     control: {
       padding: theme.spacing(2),
     },
+    margin: {
+      margin: '2% 0',
+    }
   }),
 )
 
@@ -58,6 +59,16 @@ const Collections = (props: any) => {
     const classes = useStyles()
     const grid = gridStyles()
     const { collections } = props
+    const [delay, setDelay] = useState(false);
+
+    useEffect(() => {
+      if(!delay){
+        document.addEventListener("scroll", () => {
+          const d = window.scrollY < 200 ? false : true;
+          setDelay(d)
+        })
+      }
+    })
 
     return (
       <>
@@ -68,37 +79,74 @@ const Collections = (props: any) => {
           </Typography>
         </Col>
       </Row>
-        <Grid container className={grid.root} spacing={2}>
-            {collections.map((item:any, index:number) => {
-                if(index < 4){
-                    return(
-                        <Grid item>                            
-                          <Spring
-                          from={{ opacity: 0, marginBottom: 500, }}
-                          to={{ opacity:1, marginBottom: 0, }}
-                          config={{ delay: 5, duration: 2000 }}
-                          > 
-                          {ps=>(
-                              <Card style={ps} className={classes.root}>
-                                  <CardMedia
-                                      className={classes.media}
-                                      image="/static/images/cards/paella.jpg"
-                                      title="Paella dish"
-                                  />
-                                  <CardContent>
-                                      <Typography variant="body2" color="textSecondary" component="p">
-                                      This impressive paella is a perfect party dish and a fun meal to cook together with your
-                                      guests. Add 1 cup of frozen peas along with the mussels, if you like.
-                                      </Typography>
-                                  </CardContent>
-                              </Card>
-                              )}
-                            </Spring>
-                        </Grid>
-                    )
-                }
-            })}
-        </Grid>
+      {
+        delay === true ? (
+          <>
+            <Row className={grid.root}>
+              { 
+                collections.map((item:any, index:number) => {
+                  let d = 10
+                  if(index < 4){
+                      return(
+                          <Col xs={6} md={3} className={grid.margin}>                            
+                            <Spring
+                            from={{ opacity: 0.5, marginLeft: -500, }}
+                            to={{ opacity:1,marginLeft: 0, }}
+                            config={{ delay: d + (index * 10), duration: 1000 }}
+                            > 
+                            {ps=>(
+                                <Card style={ps} className={classes.root}>
+                                    <CardMedia
+                                        className={classes.media}
+                                        image="/static/images/cards/paella.jpg"
+                                        title="Paella dish"
+                                    />
+                                    <CardContent>
+                                        <Typography variant="body2" color="textSecondary" component="p">
+                                        This impressive paella is a perfect party dish and a fun meal to cook together with your
+                                        guests. Add 1 cup of frozen peas along with the mussels, if you like.
+                                        </Typography>
+                                    </CardContent>
+                                </Card>
+                                )}
+                              </Spring>
+                          </Col>
+                      )
+                  }
+              })}
+            </Row>
+          </>
+        ) : (
+          <>
+          <Row className={grid.root}>
+              { 
+                collections.map((item:any, index:number) => {
+                  let d = 10
+                  if(index < 4){
+                      return(
+                        <Col> 
+                          <Card className={classes.root}>
+                              <CardMedia
+                                  className={classes.media}
+                                  image="/static/images/cards/paella.jpg"
+                                  title="Paella dish"
+                              />
+                              <CardContent>
+                                  <Typography variant="body2" color="textSecondary" component="p">
+                                  This impressive paella is a perfect party dish and a fun meal to cook together with your
+                                  guests. Add 1 cup of frozen peas along with the mussels, if you like.
+                                  </Typography>
+                              </CardContent>
+                          </Card>
+                        </Col>
+                      )
+                  }
+              })}
+            </Row>
+          </>
+        )
+      }
+        
       </>
     );
 }

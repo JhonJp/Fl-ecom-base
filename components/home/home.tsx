@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Spring } from 'react-spring/renderprops'
 import { Row, Col, Carousel, Image } from 'react-bootstrap'
@@ -20,10 +20,11 @@ import MoreVertIcon from '@material-ui/icons/MoreVert'
 import Particle from 'particles-bg'
 import Collections from '../collections/collections'
 import Feature from '../featured/feature'
+import BlogPosts from '../blogs/Blogs'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      maxWidth: 345,
+      minWidth: 345,
     },
     image: {
         height: 300,
@@ -45,6 +46,9 @@ const useStyles = makeStyles((theme) => ({
     avatar: {
       backgroundColor: red[500],
     },
+    margin: {
+        margin: '5% 0'
+    }
   }))
 
 const Homepage = (props: any) => {
@@ -60,8 +64,8 @@ const Homepage = (props: any) => {
         <>
             <Particle color="#ffd9cc" type="cobweb" bg={true} />
             <div className="position-relative overflow-hidden p-md-3 text-center">
-                <Row>
-                    <Col md={8}>
+                <Row className={classes.margin}>
+                    <Col md={8} xs={12}>
                         <Spring
                             from={{ opacity: 0, }}
                             to={{ opacity:1, }}
@@ -78,7 +82,7 @@ const Homepage = (props: any) => {
                             )}
                         </Spring>
                     </Col>
-                    <Col md={4}>
+                    <Col md={4} xs={12}>
                         <Card className={classes.root}>
                             <CardHeader
                                 avatar={
@@ -156,7 +160,7 @@ const Homepage = (props: any) => {
             </div>
             <Collections collections={collections} />
             <Feature />
-            <Collections collections={collections} />
+            <BlogPosts collections={collections} />
         </>
     )
 }

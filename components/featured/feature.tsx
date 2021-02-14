@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: 10,
     },
     box: {
-        height: 500,
+        minHeight: 500,
         background: '#ffd9ccc7',
         borderBottomRightRadius: '25%',
         borderTopLeftRadius: '25%',
@@ -61,12 +61,12 @@ const Feature = (props: any) => {
                 <Col md={12} className={classes.box + ' text-center'}>
                 <Particle type="polygon" bg={true} />
                     <Row>
-                        <Col md={6}>
+                        <Col md={6} xs={12}>
                             <div className={paper.root}>
                                 <Paper variant="outlined" />
                             </div>
                         </Col> 
-                        <Col md={6}>
+                        <Col md={6} xs={12}>
                             <Spring
                                 from={{ opacity:0 }}
                                 to={{ opacity:1 }}

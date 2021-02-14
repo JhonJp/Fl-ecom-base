@@ -33,12 +33,12 @@ const useStyles = makeStyles((theme) => ({
 
 const paperStyles = makeStyles((theme: Theme) =>
       createStyles({
-          root: {
-            
-          },
-          media: {
-              margin: '25%',
-          }
+        root: {
+          display: 'flex',
+        },
+        media: {
+            margin: '25%',
+        }
       }),
 )
 
@@ -49,7 +49,22 @@ const Footer = () => {
   return (
     <>
       <Row className={classes.root +' ' + classes.box}>
-        <Col md={4}>
+        <Col md={4} xs={6}>
+          <div className={paper.root}>
+            <Paper variant="outlined" />
+          </div>
+        </Col>
+        <Col md={4} xs={6}>
+          <div className={paper.root}>
+            <Paper variant="outlined" />
+          </div>
+        </Col>
+        <Col md={4} xs={6}>
+          <div className={paper.root}>
+            <Paper variant="outlined" />
+          </div>
+        </Col>
+        <Col md={4} xs={6}>
           <div className={paper.root}>
             <Paper variant="outlined" />
           </div>
