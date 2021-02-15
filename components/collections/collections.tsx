@@ -88,7 +88,7 @@ const Collections = (props: any) => {
                   let d = 10
                   if(index < 4){
                       return(
-                          <Col xs={6} md={3} className={grid.margin}>                            
+                          <Col key={index} xs={6} md={3} className={grid.margin}>                            
                             <Spring
                             from={{ opacity: 0.5, marginLeft: -500, }}
                             to={{ opacity:1,marginLeft: 0, }}
@@ -124,7 +124,7 @@ const Collections = (props: any) => {
                   let d = 10
                   if(index < 4){
                       return(
-                        <Col> 
+                        <Col key={index}> 
                           <Card className={classes.root}>
                               <CardMedia
                                   className={classes.media}

@@ -71,7 +71,7 @@ const BlogPosts = (props: any) => {
                   let d = 10
                   if(index < 4){
                       return(
-                          <Col md={3} xs={6} className={grid.margin}>                            
+                          <Col key={index} md={3} xs={6} className={grid.margin}>                            
                             <Spring
                             from={{ opacity: 0.5, marginLeft: -500, }}
                             to={{ opacity:1,marginLeft: 0, }}
@@ -120,7 +120,7 @@ const BlogPosts = (props: any) => {
                   let d = 10
                   if(index < 4){
                       return(
-                        <Col md={3} xs={6} className={grid.margin}> 
+                        <Col key={index} md={3} xs={6} className={grid.margin}> 
                           <Card className={classes.root}>
                             <CardActionArea>
                             <CardMedia

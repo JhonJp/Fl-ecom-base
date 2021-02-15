@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
       minWidth: 345,
     },
     image: {
-        height: 300,
+        height: 250,
     },
     media: {
       height: 0,
@@ -72,12 +72,18 @@ const Homepage = (props: any) => {
                             config={{ delay: 0, duration: 2000 }}
                             > 
                             {ps=>(
-                                <Carousel style={ps} controls={false} indicators={false}>
-                                    <Carousel.Item interval={3000} >    
-                                        <Image
-                                            src={headline.mainHeadline.subTitle[0].image}
-                                            className={classes.image}/>
-                                    </Carousel.Item>
+                                <Carousel style={ps} controls={true} indicators={true}>
+                                    {
+                                        headline.mainHeadline.subTitle.map((e:any,index:number) => {
+                                            return(
+                                                <Carousel.Item interval={2000} key={index}>    
+                                                    <Image
+                                                        src={e.image}
+                                                        className={classes.image}/>
+                                                </Carousel.Item>
+                                            )
+                                        })
+                                    }
                                 </Carousel>
                             )}
                         </Spring>

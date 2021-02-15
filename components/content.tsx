@@ -10,7 +10,8 @@ const Container = (prop: any) => {
   const [nav, setNavigation] = useState([])
   const [headline, setHeadline] = useState([])
   const [collections, setCollections] = useState([])
-  let names = ['navigation', 'headline', 'collections']
+  const [footer, setFooter] = useState([])
+  let names = ['navigation', 'headline', 'collections', 'footer']
 
   useEffect(() => {
     names.map((e) => {
@@ -31,12 +32,15 @@ const Container = (prop: any) => {
     switch(dbname) {
       case 'navigation':
         setNavigation(result[0])
+        break;        
+      case 'collections':
+        setCollections(result[0])
         break;
       case 'headline':
         setHeadline(result[0])
         break;
-      case 'collections':
-        setCollections(result[0])
+      case 'footer':
+        setFooter(result[0])
         setLoading(false)
         break;
       default: break;
@@ -53,7 +57,7 @@ const Container = (prop: any) => {
       <>
         <Navigation navigation={nav} />
         <Homepage headline={headline} collections={collections}/>
-        <Footer />
+        <Footer navigation={nav} footer={footer} />
       </>
     ) }
     </>
